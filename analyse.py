@@ -1,4 +1,3 @@
-
 import os
 import time
 from datetime import datetime
@@ -46,7 +45,7 @@ ts = time.time()
 st = datetime.fromtimestamp(ts).strftime('%Y_%b_%a %H_%M_%S')
 
 log_file = open("C:/temp/C15235_Logs/analyse_log_" + str(st),"w")
-log_file.write("LOG DATE and TIME: " + str(st))
+log_file.write("LOG DATE and TIME: " + str(st)+"\n")
 
 
 EventID_Table = ["1102","4611","4624","4634","4648","4661","4662","4663","4672","4673","4688","4698","4699","4702","4703","4719","4732","4738","4742","4776","4798","4799","4985","5136","5140","5142","5156","5158"]
@@ -59,7 +58,7 @@ directory = 'c:/temp/C15235_Logs/evtx_logs'
 for filename in os.listdir(directory):
     fullfilename = directory+"/" + filename
     if fullfilename.endswith(".xml"):
-        log_file.write("File Source: " + fullfilename)
+        log_file.write("File Source: " + fullfilename +"\n")
         xml_Counter +=1
         # Open file 
         with open (fullfilename, "r") as fileHandler:
@@ -75,15 +74,15 @@ for filename in os.listdir(directory):
                         MatchEventID_Counter +=1
                         #Matched in Event ID List
                         print ("Matched in Event ID List")
-                        log_file.write("MATCHED Event ID: " + str(IDNumber))
+                        log_file.write("MATCHED Event ID: " + str(IDNumber)+"\n")
                     else:
                         print("No Match in Event ID List")
-                        log_file.write("NO MATCH For Event ID: " + str(IDNumber))
+                        log_file.write("NO MATCH For Event ID: " + str(IDNumber)+"\n")
                 if "TimeCreated" in line:
                     TimeCreated_line = line
                     Time = TimeCreated_line.split('"')[1].lstrip().split('"')[0]
                     print ("This event was created on: "+ str(Time))
-                    log_file.write("#Date and Time:  " + str(Time))
+                    log_file.write("#Date and Time:  " + str(Time)+"\n")
                    # print(line.strip())
  
         
